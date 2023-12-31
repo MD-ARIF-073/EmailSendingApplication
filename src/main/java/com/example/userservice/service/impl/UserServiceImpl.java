@@ -20,18 +20,27 @@ public class UserServiceImpl implements UserService {
         if(userRepository.existsByEmail(user.getEmail())){
             throw new RuntimeException("Email already exists");
         }
-        user.setEnabled(false);
+        user.setEnabled(false);  // means disable
         userRepository.save(user);
+
+//  Creating confirmation  where user token exists
 
         Confirmation confirmation = new Confirmation(user);
         confirmationRepo.save(confirmation);
 
         /* TODO SEND EMAIL TO USER WITH TOKEN */
+
         return user;
     }
 
     @Override
     public Boolean verifyToken(String token) {
-        return null;
+        Confirmation confirmation = confirmationRepo.findByToken(token);    // So we got the token. We send that token to the db to fetch an entire confirmation by that token and
+                                                                            // then we find the user thai is associated with this confirmation
+        User user = userRepository.findByEmailIgnoreCase(confirmation.getUser().getEmail());
+        user.setEnabled(true);
+        userRepository.save(user);       // means enable user
+        //confirmationRepo.delete(confirmation);   // delete particular confirmation
+        return Boolean.TRUE;
     }
 }

@@ -3,7 +3,6 @@ package com.example.userservice.controller;
 import com.example.userservice.domain.HttpResponse;
 import com.example.userservice.domain.User;
 import com.example.userservice.service.UserService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
-@AllArgsConstructor
 public class UserController {
 
     private final UserService userService;

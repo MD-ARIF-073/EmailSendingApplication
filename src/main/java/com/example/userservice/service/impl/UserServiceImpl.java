@@ -4,6 +4,7 @@ import com.example.userservice.domain.Confirmation;
 import com.example.userservice.domain.User;
 import com.example.userservice.repository.ConfirmationRepo;
 import com.example.userservice.repository.UserRepository;
+import com.example.userservice.service.EmailService;
 import com.example.userservice.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final ConfirmationRepo confirmationRepo;
+    private final EmailService emailService;
 
     @Override
     public User saveUser(User user) {
@@ -23,12 +25,15 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(false);  // means disable
         userRepository.save(user);
 
-//  Creating confirmation  where user token exists
+//      Creating confirmation  where user token exists
 
         Confirmation confirmation = new Confirmation(user);
         confirmationRepo.save(confirmation);
 
         /* TODO SEND EMAIL TO USER WITH TOKEN */
+        emailService.sendSimpleMailMessage(user.getName(), user.getEmail(), confirmation.getToken());   //calling email service that sends simple email
+        emailService.sendMimeMessageWithAttachments(user.getName(), user.getEmail(), confirmation.getToken());
+        emailService.sendMimeMessageWithEmbeddedImages(user.getName(), user.getEmail(), confirmation.getToken());
 
         return user;
     }
@@ -43,4 +48,5 @@ public class UserServiceImpl implements UserService {
         //confirmationRepo.delete(confirmation);   // delete particular confirmation
         return Boolean.TRUE;
     }
+
 }

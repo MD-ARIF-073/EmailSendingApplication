@@ -9,9 +9,9 @@ POSTGRES_SQL_DB: spring_email_send_db
 SERVER_PORT: 8080
 ACTIVE_PROFILE: dev
 
-##Email Config
-#EMAIL_HOST: smtp.gmail.com
-#EMAIL_PORT: 587
-#EMAIL_ID: <YOUR EMAIL ADDRESS>
-#EMAIL_PASSWORD: <YOUR PASSWORD>
-#VERIFY_EMAIL_HOST: http://localhost:${SERVER_PORT}
+#Email Config
+EMAIL_HOST: smtp.gmail.com
+EMAIL_PORT: 587
+EMAIL_ID: mdarifishtiaq73@gmail.com
+EMAIL_PASSWORD: lmox aaij eemk ddvn
+VERIFY_EMAIL_HOST: http://localhost:${SERVER_PORT}

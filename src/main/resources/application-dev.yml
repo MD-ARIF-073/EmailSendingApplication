@@ -12,6 +12,6 @@ ACTIVE_PROFILE: dev
 #Email Config
 EMAIL_HOST: smtp.gmail.com
 EMAIL_PORT: 587
-EMAIL_ID: mdarifishtiaq73@gmail.com
-EMAIL_PASSWORD: lmox aaij eemk ddvn
+EMAIL_ID: ${YOUR EMAIL}
+EMAIL_PASSWORD: ${YOUR APP PASSWORD}
 VERIFY_EMAIL_HOST: http://localhost:${SERVER_PORT}

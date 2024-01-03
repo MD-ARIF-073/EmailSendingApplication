@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService {
         emailService.sendSimpleMailMessage(user.getName(), user.getEmail(), confirmation.getToken());   //calling email service that sends simple email
         emailService.sendMimeMessageWithAttachments(user.getName(), user.getEmail(), confirmation.getToken());
         emailService.sendMimeMessageWithEmbeddedImages(user.getName(), user.getEmail(), confirmation.getToken());
+        emailService.sendHtmlEmail(user.getName(), user.getEmail(), confirmation.getToken());
 
         return user;
     }
